@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+    <div class="t1">
+        <h1>Tabela de Imc</h1>
+    </div>
+    <div class="t2">
+     <label for="massa">Massa</label>
+        <input type="text" id="massa">
+        <label for="altura">Altura</label>
+        <input type="text" id="altura">
+    </div>
+        <div class="t2">
+            <p>Fórmula: Massa / Altura² </p>
+        </div>
+    
+    <div class="t3">
+        <p>Imc:<span id="imc"></span></p>
+        <p>Clacificação:<span id="sit"></span></p>
+        <br>
+        <button onclick="calcula()">Calcular IMC</button>
+    </div>
+
+    <script>
+        let m= 0;
+        let a= 0;
+        let imc= 0;
+        function calcula(){
+            let m = parseFloat(document.getElementById("massa").value);
+            let a = parseFloat(document.getElementById("altura").value);
+            let imc = m / (a * a);
+            document.getElementById("imc").innerHTML = imc;
+            document.getElementById("imc").style.color = "red";
+            document.getElementById("imc").innerHTML = imc.toFixed(2);
+            let situacao = "";
+            let cor = "";
+
+            if (imc< 18.5){
+                situacao = "Abaixo do peso";
+                cor = "yellow";
+            } else if (imc <= 24.9){
+                situacao = "Normal";
+                cor = "green";
+            } else if (imc <= 29.9){
+                situacao = "Sobre peso";
+                cor = "yellow";
+            } else if (imc<=34.9){
+                situacao = "Obesidade 1";
+                cor = "orange";
+            } else if (imc<=39.9){
+                situacao = "Obesidade 2";
+                cor = "red";
+            } else if (imc > 40) {
+                situacao ="Obesidade 3"
+                cor = "red"
+            }
+            document.getElementById("sit").innerHTML = situacao;
+            document.getElementById("sit").style.color = cor;
+            
+        }
+    </script>
+    
+</body>
+</html>
